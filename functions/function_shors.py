@@ -1,4 +1,3 @@
-# importing needed modules
 import random
 import math 
 import pandas as pd
@@ -53,12 +52,12 @@ def crack_rsa(key_to_factor: int):
 
 
     # [Case 1] 
-    if (key_to_factor & 1 == 0): # Bitwise version for key_to_factor % 2 == 0
+    if (key_to_factor & 1 == 0): 
         return 2, key_to_factor//2, None, None, None
 
     attempts = 0 
-    max_attempts = 22 # max attempts to find factors of  key
-    while attempts < max_attempts: # Only 22 attempts are made to find factors
+    max_attempts = 22 
+    while attempts < max_attempts: 
         random_num = random.randint(2, key_to_factor - 1)
 
         # [Case 2]
@@ -75,7 +74,7 @@ def crack_rsa(key_to_factor: int):
                 guessedFactor1 = math.gcd(pow(random_num, period // 2) - 1, key_to_factor)
                 guessedFactor2 = math.gcd(pow(random_num, period // 2) + 1, key_to_factor)
 
-                if guessedFactor1 > 1 and guessedFactor2 > 1 and guessedFactor1 * guessedFactor2 == key_to_factor: # Checking if  we are not returning same  key as one of factors and validating that the factors are correct
+                if guessedFactor1 > 1 and guessedFactor2 > 1 and guessedFactor1 * guessedFactor2 == key_to_factor: 
                     return guessedFactor1, guessedFactor2, period, random_num, periodicWave
 
         attempts += 1
